@@ -14,9 +14,9 @@ public class SimpleKafkaController {
 
     private final KafkaProducer kafkaProducer;
 
-    @GetMapping("/{key}/{body}")
-    public ResponseEntity<String> kafka(@PathVariable String key, @PathVariable String body) {
-        kafkaProducer.publish(KafkaTopic.ORDER_CREATED, key, body);
+    @GetMapping("/{orderId}/{itemId}")
+    public ResponseEntity<String> kafka(@PathVariable int orderId, @PathVariable int itemId) {
+        kafkaProducer.publish(KafkaTopic.ORDER_CREATED, String.valueOf(orderId), new KafkaOrderPayload(orderId, itemId));
         return ResponseEntity.ok("ok");
     }
 
