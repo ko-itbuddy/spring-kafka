@@ -11,6 +11,11 @@
 - KafkaTemplate<String, Object>, RecordMessageConverter, ConsumerFactory<String, Object> 설정을 활용하여 각 Consumer별 자동으로 이벤트 객체 변환
 - 하나의 KafkaListener class 에서 다수의 Topic을 구독하는 예제
 
+## 프로젝트 구동전 confluent-kafka 설치, 실행
+```shell
+docker-compose up -d
+```
+
 
 # Ref
 [Apache Kafka Support](https://docs.spring.io/spring-boot/reference/messaging/kafka.html)
