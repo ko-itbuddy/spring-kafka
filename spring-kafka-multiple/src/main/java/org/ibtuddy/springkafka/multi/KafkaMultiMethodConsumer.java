@@ -15,12 +15,12 @@ public class KafkaMultiMethodConsumer {
 
 
     @KafkaHandler
-    public void kafkaOrderCreatedPayload(KafkaOrderCreatedPayload kafkaOrderCreatedPayload) {
+    public void consumer(KafkaOrderCreatedPayload kafkaOrderCreatedPayload) {
         log.info("multiGroup Received: " + kafkaOrderCreatedPayload);
     }
 
     @KafkaHandler
-    public void kafkaOrderCancelPayload(KafkaOrderCancelPayload kafkaOrderCancelPayload) {
+    public void consumer(KafkaOrderCancelPayload kafkaOrderCancelPayload) {
         log.info("multiGroup Received: " + kafkaOrderCancelPayload);
     }
 
