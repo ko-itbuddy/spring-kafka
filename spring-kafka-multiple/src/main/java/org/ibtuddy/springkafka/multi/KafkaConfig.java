@@ -36,6 +36,9 @@ public class KafkaConfig {
         configProps.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapAddress);
         configProps.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
         configProps.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, JsonSerializer.class);
+        configProps.put(ProducerConfig.ACKS_CONFIG, "all"); // 가장 안전하지만 가장 느린 설정입니다. 모든 ISR (In-Sync Replicas, 동기화된 복제본)에 레코드가 복제될 때까지 기다립니다. ISR 중 하나라도 살아있다면 레코드는 유실되지 않습니다.
+        configProps.put(ProducerConfig.RETRIES_CONFIG, 3);//재전송 횟수
+        configProps.put(ProducerConfig.RETRY_BACKOFF_MS_CONFIG, 1000);//재전송 간격
         return new DefaultKafkaProducerFactory<>(configProps);
     }
 
