@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: spring-kafka
+
+  kafka:
+    bootstrap-servers: "localhost:9092"
+    consumer:
+      group-id: order
