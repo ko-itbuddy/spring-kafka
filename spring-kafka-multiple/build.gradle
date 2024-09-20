@@ -33,11 +33,6 @@ dependencies {
     testImplementation 'org.springframework.kafka:spring-kafka-test'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 
-    // https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-bus
-    implementation 'org.springframework.cloud:spring-cloud-bus:4.1.2'
-    // https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-starter-bus-kafka
-    implementation 'org.springframework.cloud:spring-cloud-starter-bus-kafka:4.1.2'
-
 }
 
 tasks.named('test') {
