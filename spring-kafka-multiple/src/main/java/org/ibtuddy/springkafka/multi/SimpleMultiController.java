@@ -24,7 +24,7 @@ public class SimpleMultiController {
     }
 
     @GetMapping("/cancel/{orderId}")
-    public ResponseEntity<String> cancel(@PathVariable int orderId, @PathVariable int itemId) {
+    public ResponseEntity<String> cancel(@PathVariable int orderId) {
         kafkaMultiProducer.publish(KafkaTopic.ORDER_CANCELED, String.valueOf(orderId), new KafkaOrderCancelPayload(orderId));
         return ResponseEntity.ok("ok");
     }
