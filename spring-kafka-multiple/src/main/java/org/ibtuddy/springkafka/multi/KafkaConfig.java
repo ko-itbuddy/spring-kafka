@@ -54,6 +54,9 @@ public class KafkaConfig {
         typeMapper.setTypePrecedence(Jackson2JavaTypeMapper.TypePrecedence.TYPE_ID);
         typeMapper.addTrustedPackages("*");
         Map<String, Class<?>> mappings = new HashMap<>();
+        // JSON 메시지의 __TypeId__ 필드는 Spring Kafka에서 제공하는 DefaultJackson2JavaTypeMapper에 의해 자동으로 추가됩니다.
+        // 이 타입 매퍼는 JSON 메시지를 역직렬화 (deserialize) 할 때, 메시지의 실제 Java 클래스 유형을 식별하기 위해 __TypeId__ 필드를 사용합니다.
+        // 예를 들어, 메시지의 __TypeId__ 필드가 "kafkaOrderCreatedPayload"로 설정되어 있으면, 이 메시지는 KafkaOrderCreatedPayload 클래스로 역직렬화됩니다.
         mappings.put("kafkaOrderCreatedPayload", KafkaOrderCreatedPayload.class);
         mappings.put("kafkaOrderCancelPayload", KafkaOrderCancelPayload.class);
         typeMapper.setIdClassMapping(mappings);
