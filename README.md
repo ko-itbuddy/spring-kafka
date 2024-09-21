@@ -16,6 +16,8 @@
 docker-compose up -d
 ```
 
+[Blog article](https://velog.io/@itbuddy/Spring-Kafka-%EA%B8%B0%EC%B4%88-%EC%98%88%EC%A0%9C)
+
 
 # Ref
 [Quick Start for Confluent Platform](https://docs.confluent.io/platform/current/get-started/platform-quickstart.html)
