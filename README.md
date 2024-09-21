@@ -23,3 +23,6 @@ docker-compose up -d
 [Intro to Apache Kafka with Spring](https://www.baeldung.com/spring-kafka)
 
 [@KafkaListener Annotation](https://docs.spring.io/spring-kafka/reference/kafka/receiving-messages/listener-annotation.html)
+
+[Spring Kafka Dead Letter Queue](https://www.baeldung.com/kafka-spring-dead-letter-queue)
+

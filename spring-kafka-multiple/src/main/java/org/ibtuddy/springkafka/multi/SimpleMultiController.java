@@ -19,13 +19,15 @@ public class SimpleMultiController {
 
     @GetMapping("/create/{orderId}/{itemId}")
     public ResponseEntity<String> create(@PathVariable int orderId, @PathVariable int itemId) {
-        kafkaMultiProducer.publish(KafkaTopic.ORDER_CREATED, String.valueOf(orderId), new KafkaOrderCreatedPayload(orderId, itemId));
+        kafkaMultiProducer.publish(KafkaTopic.ORDER_CREATED, String.valueOf(orderId),
+            new KafkaOrderCreatedPayload(orderId, itemId));
         return ResponseEntity.ok("ok");
     }
 
     @GetMapping("/cancel/{orderId}")
     public ResponseEntity<String> cancel(@PathVariable int orderId) {
-        kafkaMultiProducer.publish(KafkaTopic.ORDER_CANCELED, String.valueOf(orderId), new KafkaOrderCancelPayload(orderId));
+        kafkaMultiProducer.publish(KafkaTopic.ORDER_CANCELED, String.valueOf(orderId),
+            new KafkaOrderCancelPayload(orderId));
         return ResponseEntity.ok("ok");
     }
 

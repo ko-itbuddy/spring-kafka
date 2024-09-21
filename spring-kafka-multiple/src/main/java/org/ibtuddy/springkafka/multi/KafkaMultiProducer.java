@@ -10,9 +10,10 @@ import org.springframework.stereotype.Component;
 @Component
 @RequiredArgsConstructor
 public class KafkaMultiProducer {
+
     private final KafkaTemplate<String, Object> kafkaTemplate;
 
-    public <T> void publish(KafkaTopic topic, String key, T body){
+    public <T> void publish(KafkaTopic topic, String key, T body) {
         kafkaTemplate.send(topic.getTopic(), key, body);
         log.info("kafka message published. topic: {}, key: {}, body: {}", topic, key, body);
     }
