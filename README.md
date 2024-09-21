@@ -18,6 +18,8 @@ docker-compose up -d
 
 
 # Ref
+[Quick Start for Confluent Platform](https://docs.confluent.io/platform/current/get-started/platform-quickstart.html)
+
 [Apache Kafka Support](https://docs.spring.io/spring-boot/reference/messaging/kafka.html)
 
 [Intro to Apache Kafka with Spring](https://www.baeldung.com/spring-kafka)
