@@ -1,8 +1,7 @@
 package org.ibtuddy.springkafka.multi;
 
 import lombok.extern.slf4j.Slf4j;
-import org.ibtuddy.springkafka.KafkaTopic.KafkaTopicName;
-import org.ibtuddy.springkafka.payload.KafkaOrderCancelPayload;
+import org.ibtuddy.springkafka.KafkaTopicName;
 import org.ibtuddy.springkafka.payload.KafkaOrderCreatedPayload;
 import org.springframework.kafka.annotation.KafkaHandler;
 import org.springframework.kafka.annotation.KafkaListener;

@@ -4,11 +4,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.timeout;
 import static org.mockito.Mockito.verify;
 
-import org.ibtuddy.springkafka.KafkaTopic;
-import org.ibtuddy.springkafka.KafkaTopic.KafkaTopicName;
+import org.ibtuddy.springkafka.KafkaTopicName;
 import org.ibtuddy.springkafka.multi.KafkaMultiProducer;
 import org.ibtuddy.springkafka.multi.KafkaOrderCreatedConsumer;
-import org.ibtuddy.springkafka.payload.KafkaOrderCancelPayload;
 import org.ibtuddy.springkafka.payload.KafkaOrderCreatedPayload;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
@@ -26,8 +24,7 @@ import org.springframework.kafka.test.context.EmbeddedKafka;
 @SpringBootTest
 @EmbeddedKafka(partitions = 5,
     topics = {
-        KafkaTopicName.ORDER_CREATED,
-        KafkaTopicName.ORDER_CANCELED})
+        KafkaTopicName.ORDER_CREATED})
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 @DisplayName(" Kafka test : ** 대기 시간이 존재하여 오래 걸림")
 public class KafkaOrderCreatedConsumerTest {
@@ -60,7 +57,7 @@ public class KafkaOrderCreatedConsumerTest {
 
     @Nested
     @DisplayName("KafkaTopic.ORDER_CREATED 테스트")
-    class KafkaTopic_ORDER_CREATED {
+    class KafkaTopic_Name_ORDER_CREATED {
 
         @Test
         @DisplayName("정상 처리")
@@ -69,8 +66,9 @@ public class KafkaOrderCreatedConsumerTest {
             int orderId = 1;
             int itemId = 2;
 
-            producer.publish(KafkaTopic.ORDER_CREATED, String.valueOf(orderId),
-                new KafkaOrderCreatedPayload(orderId, itemId));
+            KafkaOrderCreatedPayload sendPayload = new KafkaOrderCreatedPayload(orderId, itemId);
+
+            producer.publish(sendPayload);
 
             verify(consumer, timeout(3000).times(1))
                 .consumer(kafkaOrderCreatedPayloadArgumentCaptor.capture());
@@ -82,21 +80,6 @@ public class KafkaOrderCreatedConsumerTest {
 
         }
 
-        @Test
-        @DisplayName("KafkaTopic.ORDER_CREATED 토픽에 KafkaOrderCancelPayload 를 전달")
-        public void withNotMatchedPayload()
-            throws Exception {
-            int orderId = 1;
-
-            producer.publish(KafkaTopic.ORDER_CREATED, String.valueOf(orderId),
-                new KafkaOrderCancelPayload(orderId));
-
-            verify(consumer, timeout(3000).times(1))
-                .unknown(unknownCaptor.capture());
-
-            assertEquals(unknownCaptor.getValue().getClass(), KafkaOrderCancelPayload.class);
-
-        }
     }
 
 
