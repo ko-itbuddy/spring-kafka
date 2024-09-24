@@ -11,10 +11,10 @@ import org.springframework.stereotype.Component;
 @Component
 @Slf4j
 @KafkaListener(
-    id = "multiGroup",
-    topics = {KafkaTopicName.ORDER_CANCELED, KafkaTopicName.ORDER_CREATED}
+    id = "orderCreated",
+    topics = {KafkaTopicName.ORDER_CREATED}
 )
-public class KafkaMultiMethodConsumer {
+public class KafkaOrderCreatedConsumer {
 
 
     @KafkaHandler
@@ -22,15 +22,8 @@ public class KafkaMultiMethodConsumer {
         log.info("multiGroup Received: " + kafkaOrderCreatedPayload);
     }
 
-
-    @KafkaHandler
-    public void consumer(KafkaOrderCancelPayload kafkaOrderCancelPayload) {
-        log.info("multiGroup Received: " + kafkaOrderCancelPayload);
-    }
-
     @KafkaHandler(isDefault = true)
     public void unknown(Object object) {
-
         log.error("multiGroup Received unknown: " + object);
     }
 

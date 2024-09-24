@@ -20,6 +20,7 @@ import org.springframework.kafka.core.DefaultKafkaConsumerFactory;
 import org.springframework.kafka.core.DefaultKafkaProducerFactory;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.core.ProducerFactory;
+import org.springframework.kafka.listener.ListenerExecutionFailedException;
 import org.springframework.kafka.support.KafkaHeaders;
 import org.springframework.kafka.support.converter.RecordMessageConverter;
 import org.springframework.kafka.support.converter.StringJsonMessageConverter;
@@ -27,6 +28,7 @@ import org.springframework.kafka.support.mapping.DefaultJackson2JavaTypeMapper;
 import org.springframework.kafka.support.mapping.Jackson2JavaTypeMapper;
 import org.springframework.kafka.support.serializer.JsonDeserializer;
 import org.springframework.kafka.support.serializer.JsonSerializer;
+import org.springframework.messaging.Message;
 import org.springframework.messaging.handler.annotation.Header;
 
 @Configuration
@@ -98,5 +100,12 @@ public class KafkaConfig {
         @Header(KafkaHeaders.EXCEPTION_MESSAGE) String errorMessage) {
         log.error("received message='{}' with partitionId='{}', offset='{}', topic='{}'",
             record.value(), offset, partitionId, topic);
+    }
+
+    @FunctionalInterface
+    public interface KafkaListenerErrorHandler {
+
+        Object handleError(Message<?> message, ListenerExecutionFailedException exception) throws Exception;
+
     }
 }
