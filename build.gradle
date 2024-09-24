@@ -1,0 +1,58 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '3.3.4'
+    id 'io.spring.dependency-management' version '1.1.6'
+}
+
+repositories {
+    mavenCentral()
+}
+
+bootJar.enabled = false
+
+subprojects {
+    group = 'org.itbuddy'
+    version = '0.0.1-SNAPSHOT'
+    sourceCompatibility = '17'
+
+    apply plugin: 'java'
+    apply plugin: 'java-library'
+    apply plugin: 'org.springframework.boot'
+    apply plugin: 'io.spring.dependency-management'
+
+    configurations {
+        compileOnly {
+            extendsFrom annotationProcessor
+        }
+    }
+
+    repositories {
+        mavenCentral()
+    }
+
+    // 관리하는 모듈의 공통 dependencies
+    dependencies {
+//        compileOnly 'org.projectlombok:lombok'
+//        annotationProcessor 'org.projectlombok:lombok'
+//        implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    }
+
+    test {
+        useJUnitPlatform()
+    }
+}
+
+project('spring-kafka-multiple') { // 컴파일 시 multi-module-database 로딩
+    dependencies {
+    }
+}
+
+project(':spring-kafka-simple') { // 컴파일 시 multi-module-database 로딩
+    dependencies {
+    }
+}
+
+//project(':multi-module-database') { // multi-module-databse는 bootJar로 패키징 할 필요 없음
+//    bootJar { enabled = false }
+//    jar { enabled = true }
+//}
