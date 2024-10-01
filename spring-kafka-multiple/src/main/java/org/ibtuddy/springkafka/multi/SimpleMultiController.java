@@ -1,16 +1,15 @@
 package org.ibtuddy.springkafka.multi;
 
-import lombok.RequiredArgsConstructor;
 import org.ibtuddy.springkafka.payload.KafkaOrderCancelPayload;
 import org.ibtuddy.springkafka.payload.KafkaOrderCreatedPayload;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import lombok.RequiredArgsConstructor;
+
 @RestController
-@RequestMapping("/multi")
 @RequiredArgsConstructor
 public class SimpleMultiController {
 

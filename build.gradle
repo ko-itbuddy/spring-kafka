@@ -11,12 +11,11 @@ repositories {
 bootJar.enabled = false
 
 subprojects {
-    group = 'org.itbuddy'
+    group = 'org.ibtuddy'
     version = '0.0.1-SNAPSHOT'
     sourceCompatibility = '17'
 
     apply plugin: 'java'
-    apply plugin: 'java-library'
     apply plugin: 'org.springframework.boot'
     apply plugin: 'io.spring.dependency-management'
 
@@ -30,11 +29,9 @@ subprojects {
         mavenCentral()
     }
 
-    // 관리하는 모듈의 공통 dependencies
     dependencies {
-//        compileOnly 'org.projectlombok:lombok'
-//        annotationProcessor 'org.projectlombok:lombok'
-//        implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+        compileOnly 'org.projectlombok:lombok'
+        annotationProcessor 'org.projectlombok:lombok'
     }
 
     test {

@@ -1,4 +1,3 @@
 rootProject.name = 'spring-kafka'
-include('spring-kafka-multiple')
-include('spring-kafka-simple')
+include('spring-kafka-multiple', 'spring-kafka-simple')
 
